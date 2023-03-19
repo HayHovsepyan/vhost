@@ -1,0 +1,41 @@
+version: '3'
+
+services:
+   nodered:
+      container_name: nodered
+      build: ./nodered
+      ports:
+        - 1880:1880
+      networks:
+        - virtualhosts 
+
+   magiccursor:    
+      container_name: magiccursor
+      build: ./magic-cursor
+      ports:
+        - 8080:8080
+      networks:
+        - virtualhosts
+
+   tempconverter:
+      container_name: tempconverter
+      build: ./temperature_converter
+      ports:
+         - 5000:5000
+      networks:
+         - virtualhosts
+
+   nginx:
+      container_name: nginx
+      build: ./nginx
+      ports:
+        - 443:443
+        - 80:80
+      networks:
+        - virtualhosts
+
+   
+
+
+networks:
+  virtualhosts:
